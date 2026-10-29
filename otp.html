@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>OTP Verification - Kumbh 2027</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+
+body{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background: url('images/sadhu.jpg') no-repeat;
+background-size: cover;
+background-position: center 20%;
+}
+
+.container{
+width:350px;
+padding:40px;
+border-radius:20px;
+background:rgba(255,255,255,0.15);
+box-shadow:0 20px 40px rgba(0,0,0,0.4);
+text-align:center;
+color:#ff7a00;
+}
+
+input{
+padding:12px;
+width:100%;
+border:none;
+border-radius:10px;
+margin:15px 0;
+}
+
+button{
+padding:12px;
+border:none;
+border-radius:25px;
+background:linear-gradient(45deg,#ff7a00,#ff4500);
+color:white;
+font-weight:bold;
+width:100%;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Verify OTP</h2>
+
+<input type="text" id="otp" placeholder="Enter OTP">
+
+<button onclick="verifyOTP()">Verify OTP</button>
+
+</div>
+
+<script>
+
+const API = "http://127.0.0.1:8000/api";
+
+function verifyOTP(){
+
+const otp=document.getElementById("otp").value;
+const tempUser=JSON.parse(localStorage.getItem("tempUser"));
+
+if(!otp){
+alert("Enter OTP!");
+return;
+}
+
+fetch(API + "/verify-otp/",{
+method:"POST",
+body: JSON.stringify({
+email:tempUser.email,
+otp:otp
+})
+})
+.then(res=>res.json())
+.then(data=>{
+
+if(data.status==="verified"){
+
+localStorage.setItem("user",JSON.stringify(tempUser));
+
+alert("Account Created Successfully!");
+
+window.location.href="auth.html";
+
+}else{
+alert("Invalid or expired OTP!");
+}
+
+});
+
+}
+
+</script>
+
+</body>
+</html>

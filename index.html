@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Smart Guide - Kumbh 2027</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Leaflet CSS -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="announcement-bar">
+    <div class="announcement-text" id="announcementText">
+        🚨 Heavy crowd at Ramkund | 🛕 Next Snan at 6:00 AM | 🚑 Medical Camp Near Gate 3
+    </div>
+</div>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+
+    <div class="logo">
+        <img src="images/logo.jpg">
+    </div>
+
+    <ul class="nav-links" id="navLinks">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#stay">Stay</a></li>
+        <li><a href="#mapSection">Map</a></li>
+        <li><a href="#countdown">Countdown</a></li>
+        
+        <li id="userSection">
+            <a href="auth.html">Login</a>
+            
+        </li>
+    </ul>
+
+    <!-- Hamburger -->
+    <div class="hamburger" onclick="toggleMenu()">
+        ☰
+    </div>
+
+</nav>
+
+
+<!-- HERO -->
+<section class="hero" id="home">
+    <div class="overlay"></div>
+    <div class="floating-diyas">
+    <span class="diya"></span>
+    <span class="diya"></span>
+    <span class="diya"></span>
+    <span class="diya"></span>
+    <span class="diya"></span>
+</div>
+
+    <div class="hero-content">
+        
+        <h1>Smart Guide – Kumbh Mela 2027</h1>
+        <p>Experience the divine gathering in Nashik like never before.</p>
+      <button class="explore-btn" onclick="openSnanPopup()">
+    Explore Now
+</button>
+    </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+    <h2>About Kumbh Mela</h2>
+    <div class="about-cards">
+        <div class="card">
+            <img src="images/spiritual.jpg">
+            <h3>Spiritual Significance</h3>
+        </div>
+        <div class="card">
+            <img src="images/ghats.jpg">
+            <h3>Holy Ghats</h3>
+        </div>
+        <div class="card">
+            <img src="images/triambakeshwar.jpg">
+            <h3>Grand Celebration</h3>
+        </div>
+    </div>
+</section>
+
+<!-- HOTEL -->
+<section class="hotel-section" id="stay">
+    <h2>Stay & Accommodation</h2>
+    <div class="hotel-container">
+
+        <div class="hotel-card">
+            <img src="images/hotel1.jpg" onclick="openImage(this.src)">
+            <h3>Hotel Ganga View</h3>
+            <p>₹2500 per night</p>
+            <button class="book-btn" onclick="openBooking('Hotel Ganga View',2500)">Book Now</button>
+        </div>
+
+        <div class="hotel-card">
+            <img src="images/hotel2.jpg" onclick="openImage(this.src)">
+            <h3>Trimbak Residency</h3>
+            <p>₹3200 per night</p>
+            <button class="book-btn" onclick="openBooking('Trimbak Residency',3200)">Book Now</button>
+        </div>
+
+        <div class="hotel-card">
+            <img src="images/hotel3.jpg" onclick="openImage(this.src)">
+            <h3>Godavari Comfort Stay</h3>
+            <p>₹1800 per night</p>
+            <button class="book-btn" onclick="openBooking('Godavari Comfort Stay',1800)">Book Now</button>
+        </div>
+
+    </div>
+</section>
+
+<!-- MAP SECTION -->
+<section class="map-section" id="mapSection">
+    <h2>Live Crowd & Location Map</h2>
+    <div class="route-controls">
+    <button onclick="setTransport('foot')">🚶 Walk</button>
+    <button onclick="setTransport('bike')">🏍 2-Wheeler</button>
+    <button onclick="setTransport('car')">🚗 4-Wheeler</button>
+</div>
+
+<div id="routeInfo"></div>
+
+    <div id="map"></div>
+    <button onclick="showEmergencyRoute()" class="em-route-btn">
+    🚨 Show Emergency Route
+</button>
+
+</section>
+
+
+<!-- COUNTDOWN -->
+<section class="countdown-section" id="countdown">
+    <h2>Kumbh 2027 Countdown</h2>
+    <div class="countdown">
+        <div><span id="days">00</span><p>Days</p></div>
+        <div><span id="hours">00</span><p>Hours</p></div>
+        <div><span id="minutes">00</span><p>Minutes</p></div>
+        <div><span id="seconds">00</span><p>Seconds</p></div>
+    </div>
+</section>
+<!--Lost Found-->
+<section class="lost-section">
+    <h2>Lost & Found Portal</h2>
+
+    <form id="lostForm">
+        <input type="text" id="itemName" placeholder="Item / Person Name" required>
+        <textarea id="description" placeholder="Description" required></textarea>
+        <input type="file" id="photoUpload" accept="image/*">
+        <img id="preview" style="max-width:150px; margin-top:10px; display:none;">
+        <button type="submit">Submit Report</button>
+    </form>
+</section>
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+    <h2>Contact Us</h2>
+    <div class="contact-container">
+        <div class="contact-info">
+            <p><strong>Email:</strong> kumbh2027@nashik.gov.in</p>
+            <p><strong>Phone:</strong> +91 9876543210</p>
+            <p><strong>Address:</strong> Kumbh Mela Office, Nashik, Maharashtra, India</p>
+        </div>
+
+        <form class="contact-form">
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email" required>
+            <textarea rows="4" placeholder="Your Message" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </div>
+</section>
+
+<!-- EMERGENCY -->
+<div class="emergency-btn" onclick="openEmergency()">
+    <img src="images/emergency.png">
+</div>
+
+<!-- BOOKING MODAL -->
+<div class="booking-modal" id="bookingModal">
+    <div class="modal-content">
+
+        <span class="close-btn" onclick="closeBooking()">✕</span>
+
+        <h2 id="hotelTitle"></h2>
+
+        <form onsubmit="calculateTotal(event)" class="booking-form">
+
+            <input type="text" id="customerName" placeholder="Your Name" required>
+
+            <input type="number" id="bookingDays" placeholder="Number of Days" required>
+
+            <input type="number" id="bookingPeople" placeholder="Number of People" required>
+            
+            <input type="date" id="bookingDate" required>
+            <select id="roomType" required>
+                <option value="">Select Room Type</option>
+                <option value="Standard">Standard Room</option>
+                <option value="Deluxe">Deluxe Room (+₹500)</option>
+                <option value="Suite">Suite Room (+₹1000)</option>
+            </select>
+
+            <button type="submit" class="confirm-btn">
+                Confirm Booking
+            </button>
+
+        </form>
+
+        <div id="totalAmount" class="result-box"></div>
+
+    </div>
+</div>
+
+<!-- IMAGE MODAL -->
+<div class="image-modal" id="imageModal">
+    <div class="image-wrapper">
+        <span class="close-image" onclick="closeImage()">✕</span>
+        <img id="expandedImg">
+    </div>
+</div>
+
+
+
+<!-- SHAHI SNAN POPUP -->
+<div class="snan-modal" id="snanModal">
+    <div class="snan-modal-content">
+
+        <span class="close-snan" onclick="closeSnanPopup()">✕</span>
+
+        <div class="snan-image-container">
+            <img src="images/snan1.jpg">
+        </div>
+
+        <div class="snan-dates-card">
+            <h2>Important Bathing Dates – Kumbh 2027</h2>
+
+            <table>
+                <tr>
+                    <th>Date</th>
+                    <th>Day</th>
+                    <th>Event</th>
+                </tr>
+
+                <tr>
+                    <td>14 January 2027</td>
+                    <td>Thursday</td>
+                    <td>Makar Sankranti (Opening)</td>
+                </tr>
+
+                <tr>
+                    <td>26 January 2027</td>
+                    <td>Tuesday</td>
+                    <td>Shahi Snan (Royal Bath)</td>
+                </tr>
+
+                <tr>
+                    <td>10 February 2027</td>
+                    <td>Wednesday</td>
+                    <td>Mauni Amavasya (Main Snan)</td>
+                </tr>
+
+                <tr>
+                    <td>26 February 2027</td>
+                    <td>Friday</td>
+                    <td>Magh Purnima</td>
+                </tr>
+
+                <tr>
+                    <td>8 March 2027</td>
+                    <td>Monday</td>
+                    <td>Maha Shivratri (Closing)</td>
+                </tr>
+
+            </table>
+
+        </div>
+
+    </div>
+</div>
+
+<!-- EMERGENCY MODAL -->
+<div class="emergency-modal" id="emergencyModal">
+    <div class="emergency-content">
+
+        <span class="close-emergency" onclick="closeEmergency()">✕</span>
+
+        <h2>Emergency Contacts</h2>
+
+        <div class="emergency-cards">
+
+            <div class="em-card police">
+                🚓 Police
+                <p>100</p>
+            </div>
+
+            <div class="em-card ambulance">
+                🚑 Ambulance
+                <p>108</p>
+            </div>
+
+            <div class="em-card fire">
+                🔥 Fire Brigade
+                <p>101</p>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet.heat/dist/leaflet-heat.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.css" />
+<script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
+
+
+
+
+
+<!--AI Chatbot-->
+
+<!-- ================= MARGDARSHak CHATBOT ================= -->
+
+<div class="margdarshak-btn" onclick="toggleChat()">
+    <img src="images/MargDarshak1.jpg" alt="Margdarshak">
+</div>
+
+<div class="margdarshak-chat" id="chatBox">
+
+    <div class="chat-header">
+
+        <div class="bot-title">
+            <span class="bot-icon">🕉</span>
+            Margdarshak
+        </div>
+        <span class="close-chat" onclick="toggleChat()">✕</span>
+    </div>
+
+    <div class="chat-body" id="chatBody"></div>
+
+    <div class="chat-input">
+        <input type="text" id="userInput" placeholder="Ask me anything...">
+        <button onclick="sendMessage()">Send</button>
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard - Kumbh 2027</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+body{display:flex;min-height:100vh;background:#f4f6fa;}
+.sidebar{width:260px;background:#002f6c;color:white;padding:25px;display:flex;flex-direction:column;gap:20px;}
+.sidebar h2{margin-bottom:20px;font-weight:600;}
+.sidebar button{padding:14px;border:none;background:#ff7a00;color:white;border-radius:10px;cursor:pointer;}
+.main{flex:1;padding:40px;}
+.card{background:white;padding:25px;border-radius:15px;box-shadow:0 10px 30px rgba(0,0,0,0.1);margin-bottom:25px;}
+.table-scroll{overflow-x:auto;}
+#bookingTable{min-width:700px;}
+</style>
+
+<body>
+
+<div class="sidebar">
+    <h2>Admin Panel</h2>
+    <button onclick="showSection('crowd')">Crowd Control</button>
+    <button onclick="showSection('bookings')">View Bookings</button>
+    <button onclick="showSection('lost')">Lost & Found</button>
+</div>
+
+<div class="main">
+
+<div class="card" id="crowdSection">
+    <h3>Update Crowd Level</h3>
+    <select id="ghatSelect">
+        <option>Ramkund Ghat</option>
+        <option>Kapaleshwar Ghat</option>
+    </select>
+
+    <select id="crowdLevel">
+        <option value="low">Low</option>
+        <option value="medium">Medium</option>
+        <option value="high">High</option>
+    </select>
+
+    <br><br>
+    <button onclick="updateCrowd()">Update Crowd</button>
+</div>
+
+<div class="card" id="bookingSection" style="display:none;">
+    <h2>Hotel Bookings</h2>
+
+<div class="table-scroll">
+
+<table id="bookingTable" border="1" cellpadding="12" style="width:100%;border-collapse:collapse;">
+<thead style="background:#ff7a00;color:white;">
+<tr>
+<th>Name</th>
+<th>Hotel</th>
+<th>Days</th>
+<th>People</th>
+<th>Room</th>
+<th>Total ₹</th>
+</tr>
+</thead>
+
+<tbody id="bookingData">
+<tr><td colspan="6">Loading bookings...</td></tr>
+</tbody>
+
+</table>
+
+</div>
+</div>
+
+<div class="card" id="lostSection" style="display:none;">
+    <h3>Lost & Found Reports</h3>
+    <div id="lostReports"></div>
+</div>
+
+</div>
+
+<script>
+
+const API = "http://127.0.0.1:8000/api";  // ✅ use this for laptop
+
+/* Admin protection */
+const loggedUser = JSON.parse(localStorage.getItem("loggedInUser"));
+if(!loggedUser || loggedUser.email !== "admin@kumbh.com"){
+    alert("Access Denied!");
+    window.location.href = "index.html";
+}
+
+function showSection(section){
+    document.getElementById("crowdSection").style.display="none";
+    document.getElementById("bookingSection").style.display="none";
+    document.getElementById("lostSection").style.display="none";
+
+    if(section==="crowd")
+        document.getElementById("crowdSection").style.display="block";
+
+    if(section==="bookings"){
+        document.getElementById("bookingSection").style.display="block";
+        loadBookings();
+    }
+
+    if(section==="lost"){
+        document.getElementById("lostSection").style.display="block";
+        loadLostReports();
+    }
+}
+
+function updateCrowd(){
+    const ghat=document.getElementById("ghatSelect").value;
+    const level=document.getElementById("crowdLevel").value;
+    localStorage.setItem("crowd-"+ghat, level);
+    alert("Crowd Updated Successfully!");
+}
+
+/* ✅ FIXED FUNCTION */
+function loadBookings(){
+
+    fetch(API + "/get-bookings/")   // ✅ FIXED URL
+    .then(res=>res.json())
+    .then(data=>{
+        const table=document.getElementById("bookingData");
+        table.innerHTML="";
+
+        if(data.length===0){
+            table.innerHTML="<tr><td colspan='6'>No bookings yet</td></tr>";
+            return;
+        }
+
+        data.forEach(b=>{
+            table.innerHTML+=`
+            <tr>
+                <td>${b.name}</td>
+                <td>${b.hotel}</td>
+                <td>${b.days}</td>
+                <td>${b.people}</td>
+                <td>${b.room_type}</td>  <!-- ✅ FIXED FIELD -->
+                <td>₹${b.total}</td>
+            </tr>
+            `;
+        });
+    })
+    .catch(err=>{
+        document.getElementById("bookingData").innerHTML=
+        "<tr><td colspan='6'>⚠️ Cannot connect to Django</td></tr>";
+    });
+}
+
+function loadLostReports(){
+    const reports=JSON.parse(localStorage.getItem("lostReports"))||[];
+    const container=document.getElementById("lostReports");
+    container.innerHTML="";
+    reports.forEach(r=>{
+        container.innerHTML+=`<p><b>${r.item}</b> - ${r.desc}</p>`;
+    });
+}
+
+</script>
+
+</body>
+</html>

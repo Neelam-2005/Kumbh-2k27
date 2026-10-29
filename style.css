@@ -1,0 +1,1049 @@
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Poppins',sans-serif}
+
+/* NAVBAR */
+/* NAVBAR */
+
+/* ================= NAVBAR ================= */
+/* ================= NAVBAR ================= */
+
+.navbar{
+    position:fixed;
+    width:100%;
+    top:0;
+    left:0;
+    padding:15px 40px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:#002f6c;
+    z-index:1000;
+}
+
+.logo img{
+    height:45px;
+}
+
+.nav-links{
+    list-style:none;
+    display:flex;
+    gap:30px;
+}
+
+.nav-links li{
+    position:relative;
+}
+
+.nav-links li a{
+    text-decoration:none;
+    color:white;
+    font-weight:500;
+    transition:0.3s;
+    padding-bottom:5px;
+}
+
+/* Hover effect */
+.nav-links li a::after{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:0;
+    width:0%;
+    height:2px;
+    background:#ff7a00;
+    transition:0.3s;
+}
+
+.nav-links li a:hover{
+    color:#ff7a00;
+}
+
+.nav-links li a:hover::after{
+    width:100%;
+}
+
+/* Hamburger */
+.hamburger{
+    display:none;
+    font-size:28px;
+    color:white;
+    cursor:pointer;
+}
+
+/* Close Button */
+.close-btn{
+    display:none;
+    font-size:24px;
+    color:white;
+    position:absolute;
+    top:20px;
+    right:20px;
+    cursor:pointer;
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:768px){
+
+    .nav-links{
+        position:fixed;
+        top:0;
+        right:-100%;
+        height:100vh;
+        width:250px;
+        background:#002f6c;
+        flex-direction:column;
+        align-items:flex-start;
+        padding:80px 30px;
+        transition:0.4s ease;
+        box-shadow:-5px 0 20px rgba(0,0,0,0.3);
+        gap:20px;
+    }
+
+    .nav-links.active{
+        right:0;
+    }
+
+    .nav-links li{
+        width:100%;
+    }
+
+    .nav-links li a{
+        width:100%;
+        display:block;
+        font-size:18px;
+    }
+
+    .hamburger{
+        display:block;
+    }
+
+    .close-btn{
+        display:block;
+    }
+}
+
+
+
+/* Shadow when scrolling */
+.navbar.scrolled {
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+
+
+
+.nav-links li {
+    position: relative;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+    font-size: 16px;
+    transition: 0.3s ease;
+}
+
+/* Hover color change */
+.nav-links a:hover {
+    color: #ff7a00;
+}
+
+/* Animated underline effect */
+.nav-links li::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 0%;
+    height: 2px;
+    background: #ff7a00;
+    transition: 0.3s ease;
+}
+
+.nav-links li:hover::after {
+    width: 100%;
+}
+
+
+/* HERO */
+.hero{
+height:100vh;
+background:url("images/hero-bg1.jpg") center/cover no-repeat;
+display:flex;justify-content:center;align-items:center;
+text-align:center;color:white;position:relative
+}
+.overlay{position:absolute;inset:0;background:rgba(0,0,0,0.6)}
+.hero-content{position:relative}
+.explore-btn{
+padding:12px 30px;background:#ff7a00;border:none;
+border-radius:30px;color:white;cursor:pointer
+}
+
+/* SHAHI SNAN SECTION */
+
+.snan-section {
+    position: relative;
+    height: 100vh;
+    background: url("images/snan1.jpg") center/cover no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+}
+
+.snan-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.65);
+}
+
+.snan-content {
+    position: relative;
+    z-index: 2;
+    width: 90%;
+    max-width: 900px;
+}
+
+.snan-content h2 {
+    font-size: 32px;
+    margin-bottom: 30px;
+    color: #ffd700;
+}
+
+.snan-card {
+    background: rgba(255, 215, 0, 0.15);
+    backdrop-filter: blur(8px);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+}
+
+.snan-card table {
+    width: 100%;
+    border-collapse: collapse;
+    color: white;
+}
+
+.snan-card th {
+    padding: 15px;
+    background: rgba(255, 165, 0, 0.7);
+    color: black;
+    font-weight: 600;
+}
+
+.snan-card td {
+    padding: 15px;
+    border-bottom: 1px solid rgba(255,255,255,0.3);
+}
+
+.snan-card tr:hover {
+    background: rgba(255, 215, 0, 0.2);
+    transition: 0.3s;
+}
+
+.hidden-section {
+    opacity: 0;
+    transform: translateY(50px);
+    pointer-events: none;
+    transition: all 0.8s ease;
+}
+
+.show-section {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+/* ABOUT */
+.about{padding:80px 20px 40px 20px;text-align:center}
+.about-cards{display:flex;gap:30px;justify-content:center;flex-wrap:wrap}
+.card{width:300px;background:white;padding:20px;border-radius:15px;box-shadow:0 5px 20px rgba(0,0,0,0.1)}
+.card img{width:100%;height:180px;object-fit:cover;border-radius:10px}
+
+/* HOTEL */
+.hotel-section{padding:40px 20px 80px 20px;text-align:center}
+.hotel-container{display:flex;gap:30px;justify-content:center;flex-wrap:wrap}
+.hotel-card{width:300px;background:white;padding:20px;border-radius:15px;box-shadow:0 8px 25px rgba(0,0,0,0.1)}
+.hotel-card img{width:100%;height:200px;object-fit:cover;border-radius:10px;cursor:pointer}
+.book-btn{padding:8px 20px;background:#ff7a00;border:none;border-radius:25px;color:white;cursor:pointer}
+
+/* COUNTDOWN */.countdown-section{
+    background:#002f6c;
+    color:white;
+    padding:60px 20px;     /* side padding added */
+    text-align:center;
+}
+
+/* DESKTOP */
+.countdown{
+    display:flex;
+    gap:40px;
+    justify-content:center;
+    flex-wrap:wrap;        /* prevents overflow on small screens */
+}
+
+/* each time box */
+.countdown div{
+    background:rgba(255,255,255,0.1);
+    padding:20px 25px;
+    border-radius:12px;
+    min-width:100px;
+    backdrop-filter: blur(6px);
+}
+
+.countdown h2{
+    font-size:40px;
+    margin:0;
+}
+
+.countdown p{
+    margin:5px 0 0;
+    font-size:14px;
+    letter-spacing:1px;
+}
+
+/* 📱 MOBILE RESPONSIVE */
+@media (max-width:768px){
+
+    .countdown-section{
+        padding:40px 15px;
+    }
+
+    .countdown{
+        gap:15px;
+    }
+
+    .countdown div{
+        padding:15px;
+        min-width:70px;
+    }
+
+    .countdown h2{
+        font-size:26px;
+    }
+
+    .countdown p{
+        font-size:12px;
+    }
+}
+
+/* CONTACT */
+.contact-section{padding:40px 20px 80px 20px;text-align:center;background:#f4f4f4}
+.contact-container{display:flex;gap:50px;justify-content:center;flex-wrap:wrap}
+.contact-form{display:flex;flex-direction:column;gap:15px;width:300px}
+.contact-form input,.contact-form textarea{
+padding:10px;border-radius:8px;border:1px solid #ccc}
+.contact-form button{
+padding:10px;background:#002f6c;color:white;border:none;border-radius:20px}
+
+/* EMERGENCY */
+.emergency-btn{
+position:fixed;bottom:25px;right:25px;
+background:red;padding:10px;border-radius:50%;cursor:pointer}
+.emergency-btn img{width:22px}
+
+/* IMAGE MODAL FIXED */
+
+.image-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.9);
+    justify-content: center;
+    align-items: center;
+    z-index: 3000;
+}
+
+.image-wrapper {
+    position: relative;
+    max-width: 80%;
+    max-height: 80%;
+}
+
+.image-wrapper img {
+    width: 100%;
+    height: auto;
+    max-height: 80vh;
+    border-radius: 15px;
+    object-fit: contain;
+}
+
+.close-image {
+    position: absolute;
+    top: 10px;     /* inside image */
+    right: 10px;   /* inside image */
+    background: white;
+    color: black;
+    font-size: 18px;
+    font-weight: bold;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.4);
+}
+.booking-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.8);
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+/* IMPORTANT: when modal opens */
+.booking-modal.active{
+    display:flex;
+}
+
+.modal-content {
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    width: 420px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.4);
+    animation: fadeInModal 0.3s ease;
+}
+
+.modal-content h2 {
+    margin-bottom: 20px;
+    color: #002f6c;
+}
+
+/* FORM */
+.booking-form input,
+.booking-form select {
+    width: 100%;
+    margin: 12px 0;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+}
+
+/* BUTTON */
+.confirm-btn {
+    margin-top: 15px;
+    padding: 12px;
+    width: 100%;
+    background: linear-gradient(45deg, #ff7a00, #ff4500);
+    border: none;
+    border-radius: 30px;
+    color: white;
+    font-weight: bold;
+    font-size: 15px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.confirm-btn:hover {
+    transform: scale(1.05);
+}
+
+/* 🔥 PERFECT CLOSE BUTTON */
+.close-btn {
+    position: absolute;
+    top: 12px;
+    right: 15px;
+    width: 32px;
+    height: 32px;
+    background: #f1f1f1;
+    border-radius: 50%;
+    font-size: 20px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.close-btn:hover{
+    background: red;
+    color: white;
+    transform: rotate(90deg);
+}
+
+/* RESULT */
+.result-box {
+    margin-top: 20px;
+    font-weight: 600;
+    color: green;
+}
+
+@keyframes fadeInModal {
+    from { opacity: 0; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* SHAHI SNAN POPUP */
+
+.snan-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    z-index: 4000;
+}
+
+.snan-modal-content {
+    background: white;
+    width: 90%;
+    max-width: 900px;
+    border-radius: 20px;
+    overflow: hidden;
+    animation: popupFade 0.3s ease;
+    position: relative;
+}
+
+.snan-image-container {
+    text-align: center;
+    padding-top: 20px;
+}
+
+.snan-image-container img {
+    width: 100%;
+    max-width: 260px;   /* smaller width */
+    height: 180px;      /* fixed height */
+    object-fit: cover;  /* crop nicely */
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+}
+
+.snan-dates-card {
+    padding: 25px;
+}
+
+.snan-dates-card h2 {
+    margin-bottom: 20px;
+    color: #002f6c;
+}
+
+.snan-dates-card table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.snan-dates-card th {
+    background: #ff7a00;
+    color: white;
+    padding: 12px;
+}
+
+.snan-dates-card td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+}
+
+.snan-dates-card tr:hover {
+    background: #f5f5f5;
+}
+
+.close-snan {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 22px;
+    cursor: pointer;
+    background: white;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@keyframes popupFade {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+/* ================= MOBILE RESPONSIVE FIX FOR SNAN POPUP ================= */
+
+@media (max-width: 768px) {
+
+    .snan-modal {
+        padding: 15px;
+        align-items: flex-start;   /* allow top alignment */
+        overflow-y: auto;          /* allow scrolling */
+    }
+
+    .snan-modal-content {
+        width: 100%;
+        max-height: 90vh;
+        overflow-y: auto;
+        border-radius: 15px;
+    }
+
+    .snan-image-container img {
+        width: 85%;
+        max-width: 220px;
+    }
+
+    .snan-dates-card {
+        padding: 15px;
+    }
+
+    .snan-dates-card h2 {
+        font-size: 18px;
+    }
+
+    .snan-dates-card table {
+        font-size: 14px;
+    }
+
+    .snan-dates-card th,
+    .snan-dates-card td {
+        padding: 8px;
+    }
+
+    .close-snan {
+        top: 10px;
+        right: 10px;
+        width: 30px;
+        height: 30px;
+        font-size: 18px;
+    }
+}
+
+
+
+/* EMERGENCY MODAL */
+
+.emergency-modal{
+    display:none;              /* only this */
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.75);
+    z-index:5000;
+
+    justify-content:center;
+    align-items:center;
+}
+
+
+
+.emergency-content {
+    background: white;
+    padding: 35px;
+    border-radius: 20px;
+    width: 400px;
+    text-align: center;
+    animation: popupFade 0.3s ease;
+    position: relative;
+}
+
+.emergency-content h2 {
+    margin-bottom: 25px;
+    color: #002f6c;
+}
+
+.emergency-btn{
+    position:fixed;
+    bottom:25px;
+    right:25px;
+
+    width:60px;      /* increased */
+    height:60px;     /* increased */
+
+    background:red;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    cursor:pointer;
+
+    box-shadow:0 8px 25px rgba(0,0,0,0.4);
+    z-index:3000;
+
+    transition:0.3s;
+}
+
+.emergency-btn img{
+    width:35px;   /* bigger icon */
+}
+
+.emergency-btn:hover{
+    transform:scale(1.1);
+}
+
+.emergency-btn{
+    animation: pulseEmergency 1.5s infinite;
+}
+
+@keyframes pulseEmergency{
+    0%{ box-shadow:0 0 0 0 rgba(255,0,0,0.6); }
+    70%{ box-shadow:0 0 0 15px rgba(255,0,0,0); }
+    100%{ box-shadow:0 0 0 0 rgba(255,0,0,0); }
+}
+
+.emergency-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.em-card {
+    padding: 15px;
+    border-radius: 12px;
+    font-weight: bold;
+    font-size: 16px;
+    color: white;
+}
+
+.em-card p {
+    margin-top: 5px;
+    font-size: 20px;
+}
+
+.police {
+    background: #1e88e5;
+}
+
+.ambulance {
+    background: #43a047;
+}
+
+.fire {
+    background: #e53935;
+}
+
+.close-emergency {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+
+section {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ================= FLOATING DIYA ANIMATION ================= */
+
+.floating-diyas {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.diya {
+    position: absolute;
+    bottom: -50px;
+    width: 15px;
+    height: 15px;
+    background: radial-gradient(circle, #ffae00 40%, #ff4500 70%);
+    border-radius: 50%;
+    box-shadow: 0 0 15px rgba(255,165,0,0.8);
+    animation: floatUp 10s linear infinite;
+    opacity: 0.8;
+}
+
+/* Random positions */
+.diya:nth-child(1){ left:10%; animation-duration: 8s; }
+.diya:nth-child(2){ left:25%; animation-duration: 12s; }
+.diya:nth-child(3){ left:50%; animation-duration: 10s; }
+.diya:nth-child(4){ left:70%; animation-duration: 14s; }
+.diya:nth-child(5){ left:85%; animation-duration: 9s; }
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(0);
+        opacity: 0;
+    }
+    20% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-110vh);
+        opacity: 0;
+    }
+}
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+.overlay {
+    z-index: 0;
+}
+
+/* ================= MAP SECTION ================= */
+
+.map-section{
+    padding:80px 20px;
+    text-align:center;
+    background:#f5f7fa;
+}
+
+.map-section h2{
+    margin-bottom:30px;
+    color:#070708;
+}
+
+#map{
+    height:400px;
+    width:100%;
+    border-radius:20px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.2);
+}
+
+.em-route-btn{
+    margin-top:20px;
+    padding:12px 25px;
+    border:none;
+    border-radius:30px;
+    background:#ff0000;
+    color:white;
+    cursor:pointer;
+    font-weight:600;
+}
+.em-route-btn:hover{
+    background:#cc0000;
+}
+
+.route-controls{
+    margin-bottom:15px;
+}
+
+.route-controls button{
+    padding:10px 18px;
+    margin:5px;
+    border:none;
+    border-radius:25px;
+    background:#002f6c;
+    color:white;
+    cursor:pointer;
+    font-weight:600;
+}
+
+.route-controls button:hover{
+    background:#ff7a00;
+}
+
+#routeInfo{
+    margin-bottom:15px;
+    font-weight:600;
+    color:#002f6c;
+}
+
+/* Mobile */
+@media(max-width:768px){
+    .route-controls{
+        display:flex;
+        flex-direction:column;
+    }
+}
+
+
+/* Mobile Responsive */
+@media(max-width:768px){
+    #map{
+        height:350px;
+    }
+}
+
+/* ================= ANNOUNCEMENT BAR ================= */
+
+.announcement-bar{
+    width:100%;
+    background:#100f0f;
+    color:white;
+    overflow:hidden;
+    white-space:nowrap;
+    position:fixed;
+    top:0;
+    left:0;
+    z-index:2000;
+    height:35px;
+    display:flex;
+    align-items:center;
+}
+
+.announcement-text{
+    display:inline-block;
+    padding-left:100%;
+    animation: scrollText 18s linear infinite;
+    font-weight:600;
+}
+
+@keyframes scrollText{
+    0%{ transform: translateX(0%); }
+    100%{ transform: translateX(-100%); }
+}
+
+/* Push navbar down */
+.navbar{
+    top:35px;
+}
+
+
+/* ================= CHATBOT ================= */
+
+
+/* ================= MARGDARSHak CHATBOT ================= */
+
+.margdarshak-btn{
+    position:fixed;
+    bottom:100px;   /* moved above emergency */
+    right:25px;
+
+    width:65px;
+    height:65px;
+    border-radius:50%;
+    background:#002f6c;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    cursor:pointer;
+    box-shadow:0 8px 25px rgba(0,0,0,0.3);
+    z-index:3000;
+    transition:0.3s;
+}
+
+.margdarshak-btn:hover{
+    transform:scale(1.1);
+    background:#ff7a00;
+}
+
+.margdarshak-btn img{
+    width:45px;
+}
+
+.margdarshak-chat{
+    position:fixed;
+    bottom:170px;
+    right:25px;
+    width:350px;
+    height:450px;
+    background:white;
+    border-radius:20px;
+    box-shadow:0 15px 40px rgba(0,0,0,0.3);
+    display:none;
+    flex-direction:column;
+    overflow:hidden;
+    z-index:3000;
+    animation: chatFade 0.3s ease;
+}
+
+@keyframes chatFade{
+    from{ transform:translateY(20px); opacity:0;}
+    to{ transform:translateY(0); opacity:1;}
+}
+
+.chat-header{
+    background:#002f6c;
+    color:white;
+    padding:15px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.bot-title{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-weight:600;
+}
+
+.close-chat{
+    cursor:pointer;
+    font-size:18px;
+}
+
+.chat-body{
+    flex:1;
+    padding:15px;
+    overflow-y:auto;
+    font-size:14px;
+    background:#f9f9f9;
+}
+
+.chat-message{
+    margin-bottom:10px;
+    padding:10px 15px;
+    border-radius:15px;
+    max-width:75%;
+}
+
+.user-msg{
+    background:#002f6c;
+    color:white;
+    margin-left:auto;
+}
+
+.bot-msg{
+    background:#ff7a00;
+    color:white;
+}
+
+.chat-input{
+    display:flex;
+    border-top:1px solid #ddd;
+}
+
+.chat-input input{
+    flex:1;
+    padding:10px;
+    border:none;
+    outline:none;
+}
+
+.chat-input button{
+    background:#ff7a00;
+    border:none;
+    color:white;
+    padding:10px 15px;
+    cursor:pointer;
+}
+
+/* Mobile */
+@media(max-width:768px){
+    .margdarshak-chat{
+        width:95%;
+        right:2.5%;
+        height:420px;
+    }
+}
+
+/* ================= Lost Found ================= */
+.lost-section{
+    padding:50px;
+    text-align:center;
+}
+
+.lost-section form{
+    max-width:400px;
+    margin:auto;
+    background:white;
+    padding:20px;
+    border-radius:15px;
+    box-shadow:0 8px 25px rgba(0,0,0,0.1);
+}
+
+.lost-section input,
+.lost-section textarea{
+    width:100%;
+    padding:10px;
+    margin:10px 0;
+}
+
+
+

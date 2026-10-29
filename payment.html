@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Payment - Kumbh 2027</title>
+    <link rel="stylesheet" href="style.css">
+
+```
+<style>
+    body {
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        height:100vh;
+        background:#f4f4f4;
+        font-family:'Poppins',sans-serif;
+    }
+
+    .payment-box {
+        background:white;
+        padding:40px;
+        width:420px;
+        border-radius:20px;
+        text-align:center;
+        box-shadow:0 20px 40px rgba(0,0,0,0.2);
+    }
+
+    .loader {
+        border:5px solid #eee;
+        border-top:5px solid #ff7a00;
+        border-radius:50%;
+        width:50px;
+        height:50px;
+        animation:spin 1s linear infinite;
+        margin:20px auto;
+    }
+
+    @keyframes spin {
+        0%{transform:rotate(0)}
+        100%{transform:rotate(360deg)}
+    }
+
+    .success {
+        color:green;
+        font-weight:bold;
+        margin-top:20px;
+    }
+
+    .receipt {
+        margin-top:20px;
+        text-align:left;
+        font-size:14px;
+    }
+
+    .receipt p {
+        margin:6px 0;
+    }
+
+    .home-btn {
+        margin-top:20px;
+        padding:10px 20px;
+        border:none;
+        border-radius:25px;
+        background:#002f6c;
+        color:white;
+        cursor:pointer;
+    }
+</style>
+```
+
+</head>
+
+<body>
+
+<div class="payment-box">
+
+```
+<h2 id="processingText">Processing Payment...</h2>
+
+<div class="loader" id="loader"></div>
+
+<div id="paymentResult" style="display:none;">
+
+    <h2 class="success">Payment Successful ✅</h2>
+
+    <div class="receipt" id="receiptBox"></div>
+
+    <button class="home-btn" onclick="goHome()">Back to Home</button>
+
+</div>
+```
+
+</div>
+
+<script>
+
+let bookingData = localStorage.getItem("bookingData");
+
+/* If booking data exists, parse it */
+if(bookingData){
+    bookingData = JSON.parse(bookingData);
+}else{
+    /* Fallback to prevent page crash */
+    bookingData = {
+        bookingID:"KM0000",
+        name:"Unknown",
+        hotel:"Unknown Hotel",
+        roomType:"Standard",
+        booking_date:"Not Provided",
+        days:"0",
+        total:"0"
+    };
+}
+
+/* Fake payment processing animation */
+setTimeout(function(){
+
+    document.getElementById("loader").style.display="none";
+    document.getElementById("processingText").style.display="none";
+    document.getElementById("paymentResult").style.display="block";
+
+    document.getElementById("receiptBox").innerHTML =
+        "<p><strong>Booking ID:</strong> "+bookingData.bookingID+"</p>"+
+        "<p><strong>Name:</strong> "+bookingData.name+"</p>"+
+        "<p><strong>Hotel:</strong> "+bookingData.hotel+"</p>"+
+        "<p><strong>Room Type:</strong> "+bookingData.roomType+"</p>"+
+        "<p><strong>Booking Date:</strong> "+bookingData.booking_date+"</p>"+
+        "<p><strong>Days:</strong> "+bookingData.days+"</p>"+
+        "<p><strong>Total Amount:</strong> ₹"+bookingData.total+"</p>";
+
+},3000);
+
+
+/* Return to home page */
+function goHome(){
+    window.location.href="index.html";
+}
+
+</script>
+
+</body>
+</html>
